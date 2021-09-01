@@ -1,0 +1,46 @@
+import java.util.Arrays;
+import java.util.List;
+
+class Solution {
+    public String solution(String[] table, String[] languages, int[] preference) {
+        String answer = "";
+        int total = -1;
+        
+        for(String filed : table) {
+			List<String> rankList = Arrays.asList(filed.split(" "));
+			String title = rankList.get(0);
+            int sum = 0;
+			
+			for(int i=0;i<languages.length;i++) {
+				String lang = languages[i];
+				int pref = preference[i];
+				
+				if(filed.contains(lang)) {
+					switch (rankList.indexOf(lang)) {
+					case 1:
+						sum += (5*pref); break;
+					case 2:
+						sum += (4*pref); break;
+					case 3:
+						sum += (3*pref); break;
+					case 4:
+						sum += (2*pref); break;
+					case 5:
+						sum += (1*pref); break;
+					}
+				}
+			}
+			
+			if(total == sum) {
+				answer = (answer.compareToIgnoreCase(title) > 0 ? title : answer);
+				total = (answer.compareToIgnoreCase(title) > 0 ? total : sum);
+			} else if(total<sum) {
+				answer = title;
+				total = sum;
+			}
+			
+		}
+        
+        return answer;
+    }
+}
