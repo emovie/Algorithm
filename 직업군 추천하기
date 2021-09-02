@@ -16,18 +16,8 @@ class Solution {
 				int pref = preference[i];
 				
 				if(filed.contains(lang)) {
-					switch (rankList.indexOf(lang)) {
-					case 1:
-						sum += (5*pref); break;
-					case 2:
-						sum += (4*pref); break;
-					case 3:
-						sum += (3*pref); break;
-					case 4:
-						sum += (2*pref); break;
-					case 5:
-						sum += (1*pref); break;
-					}
+                    int index = rankList.indexOf(lang);
+                    if(index > 0) {sum += ((6-index)*pref);}
 				}
 			}
 			
